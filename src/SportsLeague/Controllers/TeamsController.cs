@@ -40,6 +40,20 @@ namespace SportsLeague.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult CreatePlayer()
+        {
+            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName");
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreatePlayer(Player player)
+        {
+            db.Players.Add(player);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Edit(int id)
         {
             var thisTeam = db.Teams.FirstOrDefault(teams => teams.TeamId == id);

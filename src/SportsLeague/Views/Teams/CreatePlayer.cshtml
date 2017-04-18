@@ -1,0 +1,26 @@
+﻿@model SportsLeague.Models.Player
+
+@{
+    ViewData["Title"] = "Player - Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+<hr />
+<h4>Add a new Player</h4>
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(model => model.PlayerName)
+    @Html.TextBoxFor(model => model.PlayerName)
+
+    @Html.LabelFor(model => model.PlayerNumber)
+    @Html.TextBoxFor(model => model.PlayerNumber, new { @type = "number" })
+
+    @Html.LabelFor(model => model.PlayerPosition)
+    @Html.TextBoxFor(model => model.PlayerPosition)
+
+    @Html.DropDownList("TeamId")
+    <input type="submit" value="Add new Division" class="btn btn-default" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

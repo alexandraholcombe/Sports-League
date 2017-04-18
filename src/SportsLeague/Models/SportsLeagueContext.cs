@@ -10,6 +10,7 @@ namespace SportsLeague.Models
     {
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<Division> Divisions { get; set; }
+        public virtual DbSet<Player> Players { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
