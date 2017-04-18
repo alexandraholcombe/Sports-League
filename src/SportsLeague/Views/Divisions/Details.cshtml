@@ -1,0 +1,24 @@
+﻿@model SportsLeague.Models.Division
+
+@{
+    ViewData["Title"] = "Division - Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<hr />
+    Division Name: @Html.DisplayFor(model => model.DivisionName)
+
+    <h4>Teams:</h4>
+
+    <ul>
+    @foreach (var listTeam in ViewBag.Teams)
+    {
+        <li>
+            @Html.ActionLink((string) @listTeam.TeamName, "Details", "Teams", new { id = listTeam.TeamId }) @*@listTeam.TeamName*@
+        @*@Html.DisplayFor(modelTeam => listTeam.TeamName)*@
+        </li>
+    }
+    </ul>
+
+    <p>@Html.ActionLink("Back to list", "Index")</p>
