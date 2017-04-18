@@ -1,0 +1,25 @@
+﻿
+@model SportsLeague.Models.Division
+
+@{
+    ViewData["Title"] = "Division - Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Edit</h2>
+<hr />
+<h4>Edit this Division: @Html.DisplayFor(model => model.DivisionName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.DivisionId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DivisionName)
+        @Html.EditorFor(model => model.DivisionName)
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Back to list", "Index")</p>
