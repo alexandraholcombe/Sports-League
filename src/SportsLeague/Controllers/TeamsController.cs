@@ -20,9 +20,10 @@ namespace SportsLeague.Controllers
         }
         public IActionResult Details(int id)
         {
-
+            Console.WriteLine(id);
             var thisTeam = db.Teams.FirstOrDefault(teams => teams.TeamId == id);
             ViewBag.Division = db.Divisions.FirstOrDefault(divisions => divisions.DivisionId == thisTeam.DivisionId);
+            ViewBag.Players = db.Players.Where(players => players.TeamId == id).ToList();
             return View(thisTeam);
         }
 
@@ -67,6 +68,21 @@ namespace SportsLeague.Controllers
             db.Entry(team).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public IActionResult EditPlayer(int id)
+        {
+            var thisPlayer = db.Players.FirstOrDefault(players => players.PlayerId == id);
+            ViewBag.TeamId = new SelectList(db.Teams, "TeamId", "TeamName");
+            return View(thisPlayer);
+        }
+
+        [HttpPost]
+        public IActionResult EditPlayer(Player player)
+        {
+            db.Entry(player).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = player.TeamId } );
         }
 
         public IActionResult Delete(int id)

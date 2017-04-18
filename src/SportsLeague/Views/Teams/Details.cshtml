@@ -14,3 +14,38 @@
     <p>@Html.DisplayNameFor(model => model.Division.DivisionName) : @ViewBag.Division.DivisionName</p>
 
     <p>@Html.ActionLink("Back to list", "Index")</p>
+
+    <h4>Players:</h4>
+    <table class="table">
+        <tr>
+            <th>
+                Player Name
+            </th>
+            <th>
+                Player Number
+            </th>
+            <th>
+                Player Position
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var teamPlayer in ViewBag.Players)
+        {
+            <tr>
+                <td>
+                    @teamPlayer.PlayerName
+                </td>
+                <td>
+                    @teamPlayer.PlayerNumber
+                </td>
+                <td>
+                    @teamPlayer.PlayerPosition
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditPlayer", new { id = teamPlayer.PlayerId }) |
+                @Html.ActionLink("Delete", "DeletePlayer", new { id = teamPlayer.PlayerId })
+            </td>
+        </tr>
+        }
+    </table>

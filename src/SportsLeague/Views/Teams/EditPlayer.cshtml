@@ -1,0 +1,37 @@
+﻿@model SportsLeague.Models.Player
+
+@{
+    ViewData["Title"] = "Player - Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<hr />
+<h4>Edit this Player: @Html.DisplayFor(model => model.PlayerName)</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PlayerId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PlayerName)
+        @Html.EditorFor(model => model.PlayerName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PlayerNumber)
+        @Html.EditorFor(model => model.PlayerNumber, new { @type = "number" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PlayerPosition)
+        @Html.EditorFor(model => model.PlayerPosition)
+    </div>
+
+    <div class="form-group">
+        @Html.DropDownList("TeamId")
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-default" />
+}
+<p>@Html.ActionLink("Back to Team Page", "Details", new { id = Model.TeamId })</p>
