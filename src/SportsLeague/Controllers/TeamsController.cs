@@ -20,6 +20,7 @@ namespace SportsLeague.Controllers
         }
         public IActionResult Details(int id)
         {
+
             var thisTeam = db.Teams.FirstOrDefault(teams => teams.TeamId == id);
             ViewBag.Division = db.Divisions.FirstOrDefault(divisions => divisions.DivisionId == thisTeam.DivisionId);
             return View(thisTeam);

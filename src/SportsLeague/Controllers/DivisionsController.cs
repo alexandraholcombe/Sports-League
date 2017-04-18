@@ -20,6 +20,7 @@ namespace SportsLeague.Controllers
         public IActionResult Details(int id)
         {
             var thisDivision = db.Divisions.FirstOrDefault(divisions => divisions.DivisionId == id);
+            ViewBag.Teams = db.Teams.Where(teams => teams.DivisionId == id).ToList();
             return View(thisDivision);
         }
 
@@ -28,7 +29,7 @@ namespace SportsLeague.Controllers
             return View();
         }
 
-        [HttpPost] 
+        [HttpPost]
         public IActionResult Create(Division division)
         {
             db.Divisions.Add(division);
